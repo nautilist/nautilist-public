@@ -1,0 +1,22 @@
+{
+  "name": "nautilist-public",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon index.js",
+    "start": "node index.js"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "http": "0.0.0",
+    "https": "^1.0.0",
+    "morgan": "^1.9.1",
+    "nedb": "^1.8.0",
+    "path": "^0.12.7"
+  }
+}
