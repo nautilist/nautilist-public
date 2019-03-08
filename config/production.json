@@ -1,4 +1,5 @@
 {
-  "host": "nautilist-public-app.feathersjs.com",
-  "port": "PORT"
+  "host": "https://nautilist-public.herokuapp.com",
+  "port": "PORT",
+  "mongodb": "MONGODB_URI"
 }
