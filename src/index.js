@@ -2,22 +2,30 @@
 const logger = require('./logger');
 const app = require('./app');
 const port = app.get('port');
-// const server = app.listen(port);
+let server;
 
-const https = require('https')
-const fs = require('fs')
-const path = require('path')
-
-const certOptions = {
-  key: fs.readFileSync(path.resolve('config/certs/server.key')),
-  cert: fs.readFileSync(path.resolve('config/certs/server.crt'))
+if(app.get('host') == 'localhost'){
+  console.log('dev mode')
+  const https = require('https')
+  const fs = require('fs')
+  const path = require('path')
+  
+  const certOptions = {
+    key: fs.readFileSync(path.resolve('config/certs/server.key')),
+    cert: fs.readFileSync(path.resolve('config/certs/server.crt'))
+  }
+  
+  // https server
+  server = https.createServer(certOptions, app).listen(port);
+  
+  // Call app.setup to initialize all services and SocketIO
+  app.setup(server);  
+} else{
+  console.log('production mode for heroku since https is supported by default')
+  server = app.listen(port);
 }
 
-// https server
-const server = https.createServer(certOptions, app).listen(port);
 
-// Call app.setup to initialize all services and SocketIO
-app.setup(server);
 
 
 process.on('unhandledRejection', (reason, p) =>
