@@ -41,6 +41,11 @@ module.exports = function (app) {
       type: Schema.Types.ObjectId,
       ref: 'users'
     },
+    collaborators: [{
+      type: Schema.Types.ObjectId,
+      required: false,
+      ref: 'users'
+    }], // reference to collections id
     collections: [{
       type: Schema.Types.ObjectId,
       required: false,

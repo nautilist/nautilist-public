@@ -1,14 +1,16 @@
 const { authenticate } = require('@feathersjs/authentication').hooks;
+const checkUser = require('../../hooks/check-user')
+const addOwner = require('../../hooks/add-owner')
 
 module.exports = {
   before: {
-    all: [ ],
+    all: [],
     find: [],
     get: [],
-    create: [], // users can create anonymously
-    update: [authenticate('jwt')],
-    patch: [authenticate('jwt')],
-    remove: [authenticate('jwt')]
+    create: [authenticate('jwt'), addOwner()], // users can create anonymously
+    update: [authenticate('jwt'), checkUser()],
+    patch: [authenticate('jwt'), checkUser()],
+    remove: [authenticate('jwt'), checkUser()]
   },
 
   after: {
