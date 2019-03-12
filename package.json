@@ -27,6 +27,7 @@
     "eslint": "eslint src/. test/. --config .eslintrc.json",
     "dev": "nodemon src/",
     "start": "node src/",
+    "deploy-heroku": "git push heroku master",
     "mocha": "mocha test/ --recursive --exit"
   },
   "dependencies": {
