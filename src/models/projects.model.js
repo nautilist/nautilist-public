@@ -39,12 +39,13 @@ module.exports = function (app) {
     }],
     owner: {
       type: Schema.Types.ObjectId,
-      ref: 'users'
+      ref: 'users',
     },
     collaborators: [{
       type: Schema.Types.ObjectId,
-      required: false,
-      ref: 'users'
+      required: true,
+      ref: 'users',
+      default:[]
     }], // reference to collections id
     collections: [{
       type: Schema.Types.ObjectId,
@@ -59,7 +60,12 @@ module.exports = function (app) {
           type: Array,
           default: ["#FF725C", "#FFD700", "#FF80CC", "#9EEBCF", "#CDECFF", "#A463F2"],
           required: true
-      }
+      },
+    suggested:{
+          type:Array,
+          default:[],
+          required:true
+    }
   }, {
     timestamps: true
   });

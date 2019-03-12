@@ -1,6 +1,33 @@
 const { authenticate } = require('@feathersjs/authentication').hooks;
 const checkUser = require('../../hooks/check-user')
 const addOwner = require('../../hooks/add-owner')
+const sanitizeUser = require('../../hooks/sanitize-user')
+const { populate } = require('feathers-hooks-common');
+
+const userPopulateSchema = {
+  include: {
+    service: 'users',
+    nameAs: 'ownerDetails',
+    parentField: 'owner',
+    childField: '_id',
+    query:{
+      $select: ['username', '_id'],
+    }
+  }
+};
+const collaboratorsPopulateSchema = {
+  include: {
+    service: 'users',
+    nameAs: 'collaboratorDetails',
+    parentField: 'collaborators',
+    childField: '_id',
+    asArray: true,
+    query:{
+      $select: ['username', '_id'],
+    }
+  }
+};
+
 
 module.exports = {
   before: {
@@ -14,7 +41,7 @@ module.exports = {
   },
 
   after: {
-    all: [],
+    all: [populate({schema:userPopulateSchema}), populate({schema:collaboratorsPopulateSchema})],
     find: [],
     get: [],
     create: [],
