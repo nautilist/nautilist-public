@@ -1,7 +1,7 @@
 module.exports = function (app) {
 
   function getLink(type, hash) {
-    const url = 'https://localhost:3030/' + type + '?token=' + hash
+    const url = 'https://localhost:8080/' + type + '?token=' + hash
     return url
   }
 
