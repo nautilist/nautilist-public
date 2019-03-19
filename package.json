@@ -9,7 +9,7 @@
   ],
   "author": {
     "name": "joeyklee",
-    "email": "jsphknglee@gmail.com"
+    "email": "hello.nautilist@gmail.com"
   },
   "contributors": [],
   "bugs": {},
@@ -42,13 +42,16 @@
     "@feathersjs/socketio": "^3.2.7",
     "compression": "^1.7.3",
     "cors": "^2.8.5",
+    "feathers-authentication-management": "^2.0.1",
     "feathers-hooks-common": "^4.20.7",
+    "feathers-mailer": "^3.0.1",
     "feathers-mongoose": "^7.0.0",
     "fs": "0.0.1-security",
     "helmet": "^3.15.0",
     "https": "^1.0.0",
     "mongodb-core": "^3.1.9",
     "mongoose": "^5.4.0",
+    "nodemailer-smtp-transport": "^2.7.4",
     "passport-github": "^1.1.0",
     "project-name-generator": "^2.1.6",
     "serve-favicon": "^2.5.0",

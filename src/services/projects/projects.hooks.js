@@ -1,7 +1,6 @@
 const { authenticate } = require('@feathersjs/authentication').hooks;
 const checkUser = require('../../hooks/check-user')
 const addOwner = require('../../hooks/add-owner')
-const sanitizeUser = require('../../hooks/sanitize-user')
 const { populate } = require('feathers-hooks-common');
 
 const userPopulateSchema = {
