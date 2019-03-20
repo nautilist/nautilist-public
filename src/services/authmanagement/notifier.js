@@ -1,12 +1,13 @@
+
 module.exports = function (app) {
+  const GMAIL = app.get('gmail_username');
 
   function getLink(type, hash) {
     let url;
-    
     if(app.get('host') == 'localhost'){
       url = 'https://localhost:8080/' + type + '?token=' + hash
     } else {
-      url = 'https://editor.nautilists.com/' + type + '?token=' + hash
+      url = app.get('client_host') + '/' + type + '?token=' + hash
     }
     
     return url
@@ -28,7 +29,7 @@ module.exports = function (app) {
         case 'resendVerifySignup': //sending the user the verification email
           tokenLink = getLink('verify', user.verifyToken)
           email = {
-            from: process.env.GMAIL,
+            from: GMAIL,
             to: user.email,
             subject: 'Verify Signup',
             html: tokenLink
@@ -39,7 +40,7 @@ module.exports = function (app) {
         case 'verifySignup': // confirming verification
           tokenLink = getLink('verify', user.verifyToken)
           email = {
-            from: process.env.GMAIL,
+            from: GMAIL,
             to: user.email,
             subject: 'Confirm Signup',
             html: 'Thanks for verifying your email'
@@ -50,7 +51,7 @@ module.exports = function (app) {
         case 'sendResetPwd':
           tokenLink = getLink('reset', user.resetToken)
           email = {
-            from: process.env.GMAIL,
+            from: GMAIL,
             to: user.email,
             subject: 'Reset Password',
             html: tokenLink
@@ -61,7 +62,7 @@ module.exports = function (app) {
         case 'resetPwd':
           tokenLink = getLink('reset', user.resetToken)
           email = {
-            from: process.env.GMAIL,
+            from: GMAIL,
             to: user.email,
             subject: 'Your password was reset',
             html: 'your password was reset'
@@ -71,7 +72,7 @@ module.exports = function (app) {
 
         case 'passwordChange':
           email = {
-            from: process.env.GMAIL,
+            from: GMAIL,
             to: user.email,
             subject: 'Nautilist - Your password was changed!',
             html: 'your password was changed!'

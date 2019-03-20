@@ -1,5 +1,8 @@
 {
   "host": "https://nautilist-public.herokuapp.com",
   "port": "PORT",
-  "mongodb": "MONGODB_URI"
+  "mongodb": "MONGODB_URI",
+  "gmail_username": "GMAIL",
+  "gmail_password": "GMAIL_PASSWORD",
+  "client_host": "https://editor.nautilists.com"
 }

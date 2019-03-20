@@ -21,8 +21,8 @@ module.exports = function (app) {
   app.use('/mailer', Mailer(smtpTransport({
     service: 'gmail',
     auth: {
-      user: process.env.GMAIL,
-      pass: process.env.GMAIL_PASSWORD
+      user: app.get('gmail_username'),
+      pass: app.get('gmail_password')
     }
   })));
 
