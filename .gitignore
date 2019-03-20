@@ -111,3 +111,4 @@ $RECYCLE.BIN/
 lib/
 data/
 config/auth-secret-key.js
+.env
