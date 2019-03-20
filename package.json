@@ -46,6 +46,7 @@
     "feathers-authentication-management": "^2.0.1",
     "feathers-hooks-common": "^4.20.7",
     "feathers-mailer": "^3.0.1",
+    "feathers-mongodb-fuzzy-search": "^1.1.1",
     "feathers-mongoose": "^7.0.0",
     "fs": "0.0.1-security",
     "helmet": "^3.15.0",

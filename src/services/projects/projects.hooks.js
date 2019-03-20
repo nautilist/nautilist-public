@@ -2,6 +2,7 @@ const { authenticate } = require('@feathersjs/authentication').hooks;
 const checkUser = require('../../hooks/check-user')
 const addOwner = require('../../hooks/add-owner')
 const { populate } = require('feathers-hooks-common');
+const search = require('feathers-mongodb-fuzzy-search')
 
 const userPopulateSchema = {
   include: {
@@ -30,7 +31,7 @@ const collaboratorsPopulateSchema = {
 
 module.exports = {
   before: {
-    all: [],
+    all: [ ],
     find: [],
     get: [],
     create: [authenticate('jwt'), addOwner()], // users can create anonymously

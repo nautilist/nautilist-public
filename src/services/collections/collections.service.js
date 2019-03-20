@@ -6,10 +6,12 @@ const hooks = require('./collections.hooks');
 module.exports = function (app) {
   const Model = createModel(app);
   const paginate = app.get('paginate');
+  // const whitelist = {whitelist: [ '$regex', '$text' ]}
 
   const options = {
     Model,
-    paginate
+    paginate,
+    whitelist: [ '$regex', '$text', '$search' ]
   };
 
   // Initialize our service with any options it requires

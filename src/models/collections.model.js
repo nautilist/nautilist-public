@@ -51,5 +51,7 @@ module.exports = function (app) {
     timestamps: true
   });
 
+  collections.index({ name: 'text' })
+
   return mongooseClient.model('collections', collections);
 };

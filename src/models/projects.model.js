@@ -70,5 +70,7 @@ module.exports = function (app) {
     timestamps: true
   });
 
+  projects.index({ name: 'text' })
+
   return mongooseClient.model('projects', projects);
 };

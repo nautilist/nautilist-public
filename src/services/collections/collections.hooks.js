@@ -2,6 +2,8 @@ const { authenticate } = require('@feathersjs/authentication').hooks;
 const checkUser = require('../../hooks/check-user')
 const addOwner = require('../../hooks/add-owner')
 const { populate } = require('feathers-hooks-common');
+const search = require('feathers-mongodb-fuzzy-search')
+ 
 
 const userPopulateSchema = {
   include: {
@@ -20,6 +22,7 @@ const projectPopulateSchema = {
     service: '/api/projects',
     nameAs: 'projectsDetails',
     parentField: 'projects',
+    asArray: true,
     childField: '_id',
   }
 };
@@ -27,7 +30,11 @@ const projectPopulateSchema = {
 module.exports = {
   before: {
     all: [ ],
-    find: [],
+    find: [
+      search(),
+      search({  // regex search on given fields
+        fields: ['name']
+      })],
     get: [],
     create: [authenticate('jwt'), addOwner()],
     update: [authenticate('jwt')],
