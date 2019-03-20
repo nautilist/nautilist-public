@@ -65,7 +65,13 @@ module.exports = function (app) {
           type:Array,
           default:[],
           required:true
-    }
+    },
+    followers:[{
+      type: String,
+      required: true,
+      ref: 'users',
+      default:[]
+    }], // reference to users id
   }, {
     timestamps: true
   });

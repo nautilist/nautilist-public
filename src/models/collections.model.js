@@ -36,6 +36,7 @@ module.exports = function (app) {
     projects: [{
       type: String,
       required: false,
+      default:[],
       ref: 'projects',
     }], // // reference to projects id,
     selectedColor: {
@@ -47,6 +48,12 @@ module.exports = function (app) {
           default: ["#FF725C", "#FFD700", "#FF80CC", "#9EEBCF", "#CDECFF", "#A463F2"],
           required: true
       },
+      followers:[{
+        type: String,
+        required: true,
+        ref: 'users',
+        default:[]
+      }], // reference to users id
   }, {
     timestamps: true
   });

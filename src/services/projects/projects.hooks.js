@@ -28,6 +28,16 @@ const collaboratorsPopulateSchema = {
   }
 };
 
+const followersPopulateSchema = {
+  include: {
+    service: 'users',
+    nameAs: 'followersDetails',
+    parentField: 'followers',
+    asArray: true,
+    childField: '_id',
+  }
+};
+
 
 module.exports = {
   before: {
@@ -41,7 +51,9 @@ module.exports = {
   },
 
   after: {
-    all: [populate({schema:userPopulateSchema}), populate({schema:collaboratorsPopulateSchema})],
+    all: [populate({schema:userPopulateSchema}), 
+      populate({schema:collaboratorsPopulateSchema}),
+      populate({schema:followersPopulateSchema})],
     find: [],
     get: [],
     create: [],
