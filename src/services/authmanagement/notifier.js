@@ -1,7 +1,14 @@
 module.exports = function (app) {
 
   function getLink(type, hash) {
-    const url = 'https://localhost:8080/' + type + '?token=' + hash
+    let url;
+    
+    if(app.get('host') == 'localhost'){
+      url = 'https://localhost:8080/' + type + '?token=' + hash
+    } else {
+      url = 'https://editor.nautilists.com/' + type + '?token=' + hash
+    }
+    
     return url
   }
 
@@ -84,33 +91,3 @@ module.exports = function (app) {
     }
   }
 }
-
-// // forgotten password verification with long token
-// authManagement.create({
-//   action: 'resetPwdLong',
-//   value: {
-//     token, // compares to .resetToken
-//     password, // new password
-//   },
-// })
-
-// // forgotten password verification with short token
-// authManagement.create({
-//   action: 'resetPwdShort',
-//   value: {
-//     user: identifyUser, // identify user, e.g. {email: 'a@a.com'}. See options.identifyUserProps.
-//     token, // compares to .resetShortToken
-//     password, // new password
-//   },
-// })
-
-        // case 'resetPwdLong':
-        //   tokenLink = getLink('reset', user.resetToken)
-        //   email = {
-        //     from: process.env.GMAIL,
-        //     to: user.email,
-        //     subject: 'Your password was reset',
-        //     html: 'your password was reset'
-        //   }
-        //   return sendEmail(email)
-        //   break
