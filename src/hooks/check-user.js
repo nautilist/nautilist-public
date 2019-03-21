@@ -17,7 +17,7 @@ module.exports = function (options = {}) {
       } 
     } else {
       // if not, throw error
-      throw new Error('You are not the owner of this list, but you can make a copy and make a new one!');
+      throw new Error('You are not the owner or a collaborator of this list, but you can make a copy and make a new one!');
     }
 
   };
