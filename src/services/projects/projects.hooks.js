@@ -42,7 +42,11 @@ const followersPopulateSchema = {
 module.exports = {
   before: {
     all: [ ],
-    find: [],
+    find: [
+      search(),
+      search({  // regex search on given fields
+        fields: ['name']
+      })],
     get: [],
     create: [authenticate('jwt'), addOwner()], // users can create anonymously
     update: [authenticate('jwt'), checkUser()],

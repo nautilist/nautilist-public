@@ -9,7 +9,8 @@ module.exports = function (app) {
 
   const options = {
     Model,
-    paginate
+    paginate,
+    whitelist: [ '$regex', '$text', '$search' ]
   };
 
   // Initialize our service with any options it requires

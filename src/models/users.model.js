@@ -76,5 +76,7 @@ module.exports = function (app) {
     timestamps: true
   });
 
+  users.index({ username: 'text' })
+
   return mongooseClient.model('users', users);
 };

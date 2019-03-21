@@ -2,6 +2,7 @@ const { authenticate } = require('@feathersjs/authentication').hooks;
 const verifyHooks = require('feathers-authentication-management').hooks;
 const accountService = require('../authmanagement/notifier');
 const commonHooks = require('feathers-hooks-common');
+const search = require('feathers-mongodb-fuzzy-search')
 
 const {
   hashPassword, protect
@@ -10,7 +11,11 @@ const {
 module.exports = {
   before: {
     all: [],
-    find: [  ],
+    find: [ 
+      search(),
+      search({  // regex search on given fields
+        fields: ['username']
+      }) ],
     get: [ ],
     create: [ hashPassword(), verifyHooks.addVerification() ],
     update: [
