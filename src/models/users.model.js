@@ -36,7 +36,8 @@ module.exports = function (app) {
     username: {
       type: String,
       unique: true,
-      required: true
+      required: true,
+      index:'text'
     },
     profile_image: {
       type: String
@@ -76,7 +77,7 @@ module.exports = function (app) {
     timestamps: true
   });
 
-  users.index({ username: 'text' })
+  // users.index({ username: 'text' })
 
   return mongooseClient.model('users', users);
 };

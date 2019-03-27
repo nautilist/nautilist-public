@@ -45,8 +45,9 @@ module.exports = {
     find: [
       search(),
       search({  // regex search on given fields
-        fields: ['name']
-      })],
+        fields: ['name', 'description', 'md']
+      })
+    ],
     get: [],
     create: [authenticate('jwt'), addOwner()], // users can create anonymously
     update: [authenticate('jwt'), checkUser()],
@@ -58,7 +59,7 @@ module.exports = {
     all: [populate({schema:userPopulateSchema}), 
       populate({schema:collaboratorsPopulateSchema}),
       populate({schema:followersPopulateSchema})],
-    find: [],
+    find: [ ],
     get: [],
     create: [],
     update: [],

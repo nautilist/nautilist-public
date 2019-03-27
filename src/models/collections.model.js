@@ -23,11 +23,13 @@ module.exports = function (app) {
     },
     name: {
       type: String,
-      required: true
+      required: true,
+      index:'text'
     },
     description: {
       type: String,
-      required: false
+      required: false,
+      index:'text'
     },
     owner: {
       type: Schema.Types.ObjectId,
@@ -58,7 +60,8 @@ module.exports = function (app) {
     timestamps: true
   });
 
-  collections.index({ name: 'text' })
+  // indexes are added directly to the model
+  // collections.index({ name: 'text' })
 
   return mongooseClient.model('collections', collections);
 };

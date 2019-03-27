@@ -42,10 +42,11 @@ module.exports = {
   before: {
     all: [ ],
     find: [
-      search(),
-      search({  // regex search on given fields
-        fields: ['name']
-      })],
+      search()
+      // search({  // regex search on given fields
+      //   fields: ['name', 'description']
+      // })
+    ],
     get: [],
     create: [authenticate('jwt'), addOwner()],
     update: [authenticate('jwt')],

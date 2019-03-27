@@ -12,10 +12,11 @@ module.exports = {
   before: {
     all: [],
     find: [ 
-      search(),
-      search({  // regex search on given fields
-        fields: ['username']
-      }) ],
+      search()
+      // search({  // regex search on given fields
+      //   fields: ['username']
+      // }) 
+    ],
     get: [ ],
     create: [ hashPassword(), verifyHooks.addVerification() ],
     update: [

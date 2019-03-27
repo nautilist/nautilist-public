@@ -23,16 +23,19 @@ module.exports = function (app) {
       type: String
     },
     md: {
-      type: String
+      type: String,
+      index:'text'
     },
     json: {
       type: Object
     },
     name: {
-      type: String
+      type: String,
+      index:'text'
     },
     description: {
-      type: String
+      type: String,
+      index:'text'
     },
     images: [{
       type: String // base64 image blobs
@@ -76,7 +79,8 @@ module.exports = function (app) {
     timestamps: true
   });
 
-  projects.index({ name: 'text' })
+  // indexes are added directly to the model
+  projects.index({ name: 'text', md:'text', description:'text'})
 
   return mongooseClient.model('projects', projects);
 };
