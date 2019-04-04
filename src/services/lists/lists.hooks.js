@@ -49,8 +49,7 @@ const sectionsPopulateSchema = {
     select: (hook, parent, depth) => {
       if(parent.sections){
         let sections = parent.sections.map(section => section.links)
-        sections =  [].concat.apply([], sections);
-        console.log(sections)
+        sections = [].concat.apply([], sections);
         return { 
           _id: { 
             $in: sections
