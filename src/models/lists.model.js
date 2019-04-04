@@ -1,16 +1,13 @@
 const shortid = require('shortid');
 const generate = require('project-name-generator');
-
-// projects-model.js - A mongoose model
+// lists-model.js - A mongoose model
 // 
 // See http://mongoosejs.com/docs/models.html
 // for more of what you can do here.
 module.exports = function (app) {
   const mongooseClient = app.get('mongooseClient');
-  const {
-    Schema
-  } = mongooseClient;
-  const projects = new Schema({
+  const { Schema } = mongooseClient;
+  const lists = new Schema({
     _id: {
       type: String,
       default: shortid.generate
@@ -60,16 +57,13 @@ module.exports = function (app) {
     }], // reference to collections id
     selectedColor: {
       type: Number,
-      default: () => Math.floor(Math.random() * 5)
+      default: 1
     },
-    features:[{
-      type: Object // {_id: abc123, db:'links'}, {_id: abc123, db:'projects'}
+    links:[{
+      type: Schema.Types.ObjectId,
+      required: false,
+      ref: 'links'
     }],
-    // links:[{
-    //   type: Schema.Types.ObjectId,
-    //   required: false,
-    //   ref: 'links'
-    // }],
     colors: {
       type: Array,
       default: ["#FF725C", "#FFD700", "#FF80CC", "#9EEBCF", "#CDECFF", "#A463F2"],
@@ -97,12 +91,12 @@ module.exports = function (app) {
     timestamps: true
   });
 
-  // indexes are added directly to the model
-  projects.index({
-    name: 'text',
-    md: 'text',
-    description: 'text'
-  })
+    // indexes are added directly to the model
+    lists.index({
+      name: 'text',
+      md: 'text',
+      description: 'text'
+    })
 
-  return mongooseClient.model('projects', projects);
+  return mongooseClient.model('lists', lists);
 };

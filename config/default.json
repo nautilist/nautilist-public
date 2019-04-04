@@ -43,5 +43,5 @@
       "secure": false
     }
   },
-  "mongodb": "mongodb://localhost:27017/nautilist_public"
+  "mongodb": "mongodb://localhost:27017/nautilist_public_refactor"
 }
