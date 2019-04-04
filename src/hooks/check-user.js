@@ -5,8 +5,9 @@
 module.exports = function (options = {}) {
   return async context => {
 
-    const currentResource = await context.app.service('/api/projects').get(context.id);
+    const currentResource = await context.app.service(`${context.path}`).get(context.id);
     
+    // console.log(currentResource)
     // check if context.data has an Owner
     if (currentResource.hasOwnProperty('owner')) {
       // check if the user is the owner or a collaborator

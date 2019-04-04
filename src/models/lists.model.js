@@ -4,9 +4,42 @@ const generate = require('project-name-generator');
 // 
 // See http://mongoosejs.com/docs/models.html
 // for more of what you can do here.
+
+
 module.exports = function (app) {
   const mongooseClient = app.get('mongooseClient');
   const { Schema } = mongooseClient;
+
+  const sectionSchema = new Schema({
+    _id: {
+      type: String,
+      default: shortid.generate
+    },
+    alias: {
+      type: String,
+      default: generate({
+        words: 2,
+        alliterative: true
+      }).dashed
+    },
+    name: {
+      type: String, 
+      default:'A friendly section title',
+      required:false
+    },
+    description: {
+      type: String, 
+      default:'A very nice section description.',
+      required:false
+    },
+    links:{
+      type: [String],
+      required: false,
+      ref: 'links',
+      default:[]
+    }
+  })
+
   const lists = new Schema({
     _id: {
       type: String,
@@ -59,8 +92,12 @@ module.exports = function (app) {
       type: Number,
       default: 1
     },
+    sections:{
+      type: [sectionSchema],
+      default:[{"name":"", "description":""}],
+    },
     links:[{
-      type: Schema.Types.ObjectId,
+      type: String,
       required: false,
       ref: 'links'
     }],
@@ -74,7 +111,7 @@ module.exports = function (app) {
     }],
     featureType: {
       type: String,
-      default: 'projects'
+      default: 'lists'
     },
     suggested: {
       type: Array,

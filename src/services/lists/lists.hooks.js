@@ -3,6 +3,7 @@ const checkUser = require('../../hooks/check-user')
 const addOwner = require('../../hooks/add-owner')
 const preventDuplicates = require('../../hooks/prevent-duplicates')
 const { populate } = require('feathers-hooks-common');
+const { fastJoin } = require('feathers-hooks-common');
 const search = require('feathers-mongodb-fuzzy-search')
  
 
@@ -36,7 +37,30 @@ const linksPopulateSchema = {
     nameAs: 'linksDetails',
     parentField: 'links',
     asArray: true,
-    childField: '_id',
+    childField: '_id'
+  }
+};
+
+const sectionsPopulateSchema = {
+  include: {
+    service: '/api/links',
+    nameAs: 'sectionsDetails',
+    parentField:'sections.links',
+    select: (hook, parent, depth) => {
+      if(parent.sections){
+        let sections = parent.sections.map(section => section.links)
+        sections =  [].concat.apply([], sections);
+        console.log(sections)
+        return { 
+          _id: { 
+            $in: sections
+          } 
+        }
+      } else {
+        return {}
+      }
+    },
+    asArray:true
   }
 };
 
@@ -49,6 +73,7 @@ const followersPopulateSchema = {
     childField: '_id',
   }
 };
+
 
 module.exports = {
   before: {
@@ -70,7 +95,9 @@ module.exports = {
     all: [populate({schema:userPopulateSchema}), 
       populate({schema:collaboratorsPopulateSchema}),
       populate({schema:followersPopulateSchema}),
-      populate({schema:linksPopulateSchema})],
+      populate({schema:linksPopulateSchema}),
+      populate({schema:sectionsPopulateSchema})
+    ],
     find: [ ],
     get: [],
     create: [],
