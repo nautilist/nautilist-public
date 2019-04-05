@@ -4,7 +4,7 @@
 // eslint-disable-next-line no-unused-vars
 module.exports = function (options = {}) {
   return async context => {
-    const currentResource = await context.app.service('/api/collections').get(context.id);
+    const currentResource = await context.app.service(`${context.path}`).get(context.id);
     // console.log(context.params)
     // console.log(context.data)
     

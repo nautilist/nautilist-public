@@ -5,7 +5,7 @@ const preventDuplicates = require('../../hooks/prevent-duplicates')
 const { populate } = require('feathers-hooks-common');
 const { fastJoin } = require('feathers-hooks-common');
 const search = require('feathers-mongodb-fuzzy-search')
- 
+const preventEmptySections = require('../../hooks/prevent-empty-sections')
 
 const userPopulateSchema = {
   include: {
@@ -85,8 +85,8 @@ module.exports = {
     ],
     get: [],
     create: [authenticate('jwt'), addOwner()], // users can create anonymously
-    update: [authenticate('jwt'), checkUser()],
-    patch: [authenticate('jwt'), checkUser()],
+    update: [authenticate('jwt'), checkUser(), preventEmptySections()],
+    patch: [authenticate('jwt'), checkUser(), preventEmptySections()],
     remove: [authenticate('jwt'), checkUser()]
   },
 

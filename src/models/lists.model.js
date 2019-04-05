@@ -94,7 +94,12 @@ module.exports = function (app) {
     },
     sections:{
       type: [sectionSchema],
-      default:[{"name":"", "description":""}],
+      default:[{ 
+          "name": "", 
+          "description": "", 
+          _id: shortid.generate(),
+          links:[]
+      }],
     },
     links:[{
       type: String,
