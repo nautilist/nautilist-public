@@ -35,6 +35,9 @@ const followersPopulateSchema = {
     parentField: 'followers',
     asArray: true,
     childField: '_id',
+    query:{
+      $select: ['username', '_id'],
+    }
   }
 };
 

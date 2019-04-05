@@ -37,7 +37,7 @@ const linksPopulateSchema = {
     nameAs: 'linksDetails',
     parentField: 'links',
     asArray: true,
-    childField: '_id'
+    childField: '_id',
   }
 };
 
@@ -70,6 +70,9 @@ const followersPopulateSchema = {
     parentField: 'followers',
     asArray: true,
     childField: '_id',
+    query:{
+      $select: ['username', '_id'],
+    }
   }
 };
 
