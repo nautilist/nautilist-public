@@ -25,12 +25,14 @@ module.exports = function (app) {
     name: {
       type: String, 
       default:'A friendly section title',
-      required:false
+      required:false,
+      index: 'text'
     },
     description: {
       type: String, 
       default:'A very nice section description.',
-      required:false
+      required:false,
+      index: 'text'
     },
     links:{
       type: [String],
@@ -57,7 +59,6 @@ module.exports = function (app) {
     },
     md: {
       type: String,
-      index: 'text'
     },
     json: {
       type: Object
@@ -136,7 +137,6 @@ module.exports = function (app) {
     // indexes are added directly to the model
     lists.index({
       name: 'text',
-      md: 'text',
       description: 'text'
     })
 

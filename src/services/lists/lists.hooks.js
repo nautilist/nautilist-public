@@ -80,7 +80,7 @@ module.exports = {
     find: [
       search(),
       search({  // regex search on given fields
-        fields: ['name', 'description', 'md']
+        fields: ['name', 'description']
       })
     ],
     get: [],
