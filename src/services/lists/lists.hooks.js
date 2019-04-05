@@ -85,8 +85,8 @@ module.exports = {
     ],
     get: [],
     create: [authenticate('jwt'), addOwner()], // users can create anonymously
-    update: [authenticate('jwt'), checkUser(), preventEmptySections()],
-    patch: [authenticate('jwt'), checkUser(), preventEmptySections()],
+    update: [authenticate('jwt'), checkUser() ],
+    patch: [authenticate('jwt'), checkUser() ],
     remove: [authenticate('jwt'), checkUser()]
   },
 
