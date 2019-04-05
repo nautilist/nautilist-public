@@ -16,7 +16,7 @@ module.exports = function (app) {
     },
     selectedColor: {
       type: Number,
-      default: 0
+      default: 3
     },
     colors: {
       type: Array,
