@@ -3,6 +3,7 @@ const verifyHooks = require('feathers-authentication-management').hooks;
 const accountService = require('../authmanagement/notifier');
 const commonHooks = require('feathers-hooks-common');
 const search = require('feathers-mongodb-fuzzy-search')
+const checkUser = require('../../hooks/check-user')
 
 const {
   hashPassword, protect
@@ -40,7 +41,7 @@ module.exports = {
           authenticate('jwt')
         )
     ],
-    remove: [ authenticate('jwt') ]
+    remove: [ authenticate('jwt'), checkUser() ]
   },
 
   after: {
