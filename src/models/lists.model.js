@@ -28,6 +28,10 @@ module.exports = function (app) {
       required:false,
       index: 'text'
     },
+    tags: [{
+      type: String,
+      index:'text'
+    }],
     description: {
       type: String, 
       default:'A very nice section description.',
@@ -113,7 +117,8 @@ module.exports = function (app) {
       required: true
     },
     tags: [{
-      type: String
+      type: String,
+      index:'text'
     }],
     featureType: {
       type: String,
@@ -137,7 +142,8 @@ module.exports = function (app) {
     // indexes are added directly to the model
     lists.index({
       name: 'text',
-      description: 'text'
+      description: 'text',
+      tags:'text'
     })
 
   return mongooseClient.model('lists', lists);
