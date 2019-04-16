@@ -24,7 +24,8 @@ module.exports = function (options = {}) {
         // then return context
         return context; 
       } 
-      else if(context.data.hasOwnProperty('$push') && context.data.$push.hasOwnProperty('followers')) {
+      else if(context.data.hasOwnProperty('$push') && context.data.$push.hasOwnProperty('followers') || 
+      context.data.hasOwnProperty('$pull') && context.data.$pull.hasOwnProperty('followers') && String(context.data.$pull.followers) === String(currentUser)) {
         // if the patch is to add a follower allow it
         return context;
       } else {
