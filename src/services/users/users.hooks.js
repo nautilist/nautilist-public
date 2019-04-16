@@ -9,6 +9,7 @@ const {
   hashPassword, protect
 } = require('@feathersjs/authentication-local').hooks;
 
+
 module.exports = {
   before: {
     all: [],
@@ -26,20 +27,22 @@ module.exports = {
     patch: [
       commonHooks.iff(
         commonHooks.isProvider('external'),
-          commonHooks.preventChanges(true, [
-            'email',
-            'isVerified',
-            'verifyToken',
-            'verifyShortToken',
-            'verifyExpires',
-            'verifyChanges',
-            'resetToken',
-            'resetShortToken',
-            'resetExpires']
-          ),
-          hashPassword(),
-          authenticate('jwt')
-        )
+        commonHooks.preventChanges(true, 
+          'email',
+          'username',
+          'isVerified',
+          'verifyToken',
+          'verifyShortToken',
+          'verifyExpires',
+          'verifyChanges',
+          'resetToken',
+          'resetShortToken',
+          'resetExpires'
+        
+        ),
+        hashPassword(),
+        authenticate('jwt')
+      )
     ],
     remove: [ authenticate('jwt'), checkUser() ]
   },
@@ -48,7 +51,7 @@ module.exports = {
     all: [
       // Make sure the password field is never sent to the client
       // Always must be the last hook
-      protect('password')
+      protect('password'),protect('email') 
     ],
     find: [],
     get: [],
