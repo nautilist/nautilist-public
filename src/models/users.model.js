@@ -55,6 +55,12 @@ module.exports = function (app) {
       default: () => Math.floor(Math.random() * 11),
       required: true
     },
+    following: [{
+      type: String,
+      required: true,
+      ref: 'users',
+      default: []
+    }], // reference to users id
     emojis: {
       type: Array,
       default: [

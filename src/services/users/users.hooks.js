@@ -4,10 +4,24 @@ const accountService = require('../authmanagement/notifier');
 const commonHooks = require('feathers-hooks-common');
 const search = require('feathers-mongodb-fuzzy-search')
 const checkUser = require('../../hooks/check-user')
+const { populate } = require('feathers-hooks-common');
 
 const {
   hashPassword, protect
 } = require('@feathersjs/authentication-local').hooks;
+
+const followingPopulateSchema = {
+  include: {
+    service: 'users',
+    nameAs: 'followingDetails',
+    parentField: 'following',
+    asArray: true,
+    childField: '_id',
+    query:{
+      $select: ['username', '_id'],
+    }
+  }
+};
 
 
 module.exports = {
@@ -51,7 +65,8 @@ module.exports = {
     all: [
       // Make sure the password field is never sent to the client
       // Always must be the last hook
-      protect('password'),protect('email') 
+      protect('password'),protect('email'),
+      populate({schema:followingPopulateSchema})
     ],
     find: [],
     get: [],
