@@ -52,7 +52,6 @@ module.exports = {
           'resetToken',
           'resetShortToken',
           'resetExpires'
-        
         ),
         hashPassword(),
         authenticate('jwt')
@@ -65,7 +64,7 @@ module.exports = {
     all: [
       // Make sure the password field is never sent to the client
       // Always must be the last hook
-      protect('password'),protect('email'),
+      protect('password'),
       populate({schema:followingPopulateSchema})
     ],
     find: [],
